@@ -1,0 +1,25 @@
+data:
+  dataset: DIC-C2DH-HeLa
+  ctc_root: /path/to/CTC
+  data_csv: null
+  test: all02
+
+encoder:
+  epochs: 100
+
+decoder:
+  epochs: 200
+  lr: 1.0e-4
+  weight_decay: 1.0e-3
+  batch_size: 16
+  lam: 4.0
+  workers: 8
+
+decode:
+  DIC-C2DH-HeLa: "hmax:0.25"
+  Fluo-N2DL-HeLa: "hmax:0.2"
+  Fluo-C2DL-MSC: "hmax:0.4"
+  PhC-C2DH-U373: "hmax:0.4"
+  Platelet-TIRF: "md:16"
+
+out: weights

@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.egg-info/
+# trained weights are not distributed
+weights/
+predictions/

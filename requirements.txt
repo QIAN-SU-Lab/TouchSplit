@@ -1,0 +1,7 @@
+torch==2.7.1
+cellpose==4.0.9
+numpy==2.2.6
+scipy==1.16.0
+scikit-image==0.26.0
+tifffile==2026.3.3
+pyyaml
