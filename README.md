@@ -1,7 +1,7 @@
 # TouchSplit
 
 <p align="center">
-  <img src="images/framework.png" alt="TouchSplit framework" width="900"/>
+  <img src="images/framework.svg" alt="TouchSplit framework" width="900"/>
 </p>
 
 ## Overview
