@@ -68,7 +68,7 @@ The folder contains 16 checkpoint files: 4 encoders named `cellpose_ft_<dataset>
 
 - [Fluo-N2DL-HeLa](https://www.kaggle.com/api/v1/datasets/download/xunbch/hela-train) (Kaggle mirror)
 
-- [Fluo-C2DL-MSC](https://data.celltrackingchallenge.net/training-datasets/Fluo-C2DL-MSC.zip)
+- [Fluo-C2DL-MSC](https://data.celltrackingchallenge.net/training-datasets/Fluo-C2DL-MSC.zip) (**TBD, this url is out of date or invalid**)
 
 - [PhC-C2DH-U373](https://zenodo.org/api/records/15608252/files/PhC-C2DH-U373.zip/content) (Zenodo mirror)
 
