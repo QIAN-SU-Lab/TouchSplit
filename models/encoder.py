@@ -4,8 +4,9 @@ import torch
 class FrozenEncoder:
     def __init__(self, checkpoint, device='cuda'):
         from cellpose import models
-        cp = models.CellposeModel(gpu=device.startswith('cuda'))
-        cp.net.load_state_dict(torch.load(checkpoint, map_location=device))
+        cp = models.CellposeModel(
+            gpu=device.startswith('cuda'), pretrained_model=str(checkpoint), device=torch.device(device))
+        cp.net.load_state_dict(torch.load(checkpoint, map_location=device, weights_only=True))
         self.net = cp.net.eval()
         for p in self.net.parameters():
             p.requires_grad_(False)

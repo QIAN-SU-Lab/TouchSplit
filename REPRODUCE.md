@@ -37,4 +37,5 @@ Platelet settings (data not public): decoder `lam: 2`, `lr: 1.0e-3`, 100 epochs,
 
 ## Training time
 
-Encoder fine-tuning takes 10–30 min and decoder training 40 min–3.5 h per dataset on one NVIDIA A800.
+Encoder fine-tuning takes 10 -- 30 min and decoder training 40 min -- 3.5 h per dataset on one NVIDIA A800.
+
