@@ -45,8 +45,6 @@ python touchsplit.py predict -c touchsplit.yml \
     -o /path/to/output_results
 ```
 
-To reproduce the paper experiments, see [REPRODUCE.md](REPRODUCE.md).
-
 ## Reproducibility details
 
 ### Pretrained checkpoints
@@ -150,6 +148,46 @@ python touchsplit.py evaluate -c touchsplit.yml -d "$DS" \
          "predictions/${DS}_s2"
 ```
 
+### Fluo-C2DL-MSC
+
+Evaluation uses all 48 frames of sequence 02, with GT annotations for 33 frames and ST annotations for the remaining 15 frames. All three decoders use the same seed-0 encoder and `hmax:0.4` watershed markers. Scores are computed using the evaluation implementation in `utils.py`.
+
+| Decoder seed | SEG | Touch SEG | Nontouch SEG |
+| --- | --- | --- | --- |
+| 0 | 0.7716 ± 0.1043 | 0.7015 ± 0.1769 | 0.7857 ± 0.1135 |
+| 1 | 0.7752 ± 0.1020 | 0.7174 ± 0.1572 | 0.7863 ± 0.1141 |
+| 2 | 0.7660 ± 0.1162 | 0.6885 ± 0.1765 | 0.7853 ± 0.1144 |
+| **Three-seed summary** | **0.7709 ± 0.1046** | **0.7024 ± 0.1633** | **0.7858 ± 0.1139** |
+
+Touch SEG includes 32 instances across 16 eligible images; Nontouch SEG includes 142 instances across 44 eligible images.
+
+Values are per-image means ± population standard deviations across images (`ddof=0`). For the three-seed summary, scores are first averaged across seeds for each image, then the mean and standard deviation are computed across images. Images without eligible objects in a subset are excluded from that subset's statistics.
+
+To reproduce these results, place the checkpoints in `pretrained/` and extract the training dataset to `data/CTC/Fluo-C2DL-MSC/`, preserving its image and GT/ST directories. Run the following commands from the repository root:
+
+```bash
+DS=Fluo-C2DL-MSC
+for SEED in 0 1 2; do
+  python touchsplit.py predict -c touchsplit.yml -d "$DS" \
+    -e "pretrained/cellpose_ft_${DS}_s0.pt" \
+    -w "pretrained/touchsplit_head_${DS}_s${SEED}.pt" \
+    --decode hmax:0.4 \
+    -i "data/CTC/${DS}/02" \
+    -o "predictions/${DS}_s${SEED}"
+
+  python touchsplit.py evaluate -c touchsplit.yml -d "$DS" \
+    --ctc-root data/CTC \
+    --pred "predictions/${DS}_s${SEED}"
+done
+
+# Average scores across seeds per image, then summarize across images.
+python touchsplit.py evaluate -c touchsplit.yml -d "$DS" \
+  --ctc-root data/CTC \
+  --pred "predictions/${DS}_s0" \
+         "predictions/${DS}_s1" \
+         "predictions/${DS}_s2"
+```
+
 ### PhC-C2DH-U373
 
 Evaluation uses all 115 frames of sequence 02, with GT annotations for 19 frames and ST annotations for the remaining 96 frames. All three decoders use the same seed-0 encoder and `hmax:0.4` watershed markers. Scores are computed using the evaluation implementation in `utils.py`.
@@ -191,3 +229,4 @@ To Be Determined
 
 ## License
 MIT (see [LICENSE](LICENSE)).
+
