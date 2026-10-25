@@ -13,8 +13,6 @@ For questions or problems, please open an issue.
 ## Installation
 
 ```bash
-git clone https://github.com/JINGHANcoco/touchsplit.git
-cd touchsplit
 conda create -n touchsplit python=3.11
 conda activate touchsplit
 pip install -r requirements.txt
