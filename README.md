@@ -78,8 +78,6 @@ Please contact the author for details.
 
 ### DIC-C2DH-HeLa
 
-Evaluation uses all 84 frames of sequence 02, with GT annotations for 9 frames and ST annotations for the remaining 75 frames. All three decoders use the same seed-0 encoder and `hmax:0.25` watershed markers. Scores are computed using the evaluation implementation in `utils.py`.
-
 | Decoder seed | SEG | Touch SEG | Nontouch SEG |
 | --- | --- | --- | --- |
 | 0 | 0.8915 ± 0.0309 | 0.8977 ± 0.0279 | 0.8777 ± 0.0822 |
@@ -87,7 +85,7 @@ Evaluation uses all 84 frames of sequence 02, with GT annotations for 9 frames a
 | 2 | 0.8898 ± 0.0343 | 0.8957 ± 0.0298 | 0.8779 ± 0.0804 |
 | **Three-seed summary** | **0.8896 ± 0.0326** | **0.8959 ± 0.0288** | **0.8761 ± 0.0826** |
 
-To reproduce these results, place the checkpoints from the shared folder in `pretrained/` and extract the training dataset to `data/CTC/DIC-C2DH-HeLa/`, preserving its `01`, `02`, GT and ST directories. Run the following commands from the repository root:
+To reproduce these results:
 
 ```bash
 # Predict sequence 02 and evaluate each decoder seed separately.
@@ -114,8 +112,6 @@ python touchsplit.py evaluate -c touchsplit.yml -d DIC-C2DH-HeLa \
 
 ### Fluo-N2DL-HeLa
 
-Evaluation uses all 92 frames of sequence 02, with GT annotations for 8 frames and ST annotations for the remaining 84 frames. All three decoders use the same seed-0 encoder and `hmax:0.2` watershed markers. Scores are computed using the evaluation implementation in `utils.py`.
-
 | Decoder seed | SEG | Touch SEG | Nontouch SEG |
 | --- | --- | --- | --- |
 | 0 | 0.9327 ± 0.0331 | 0.8906 ± 0.0382 | 0.9414 ± 0.0317 |
@@ -123,7 +119,7 @@ Evaluation uses all 92 frames of sequence 02, with GT annotations for 8 frames a
 | 2 | 0.9323 ± 0.0331 | 0.8929 ± 0.0377 | 0.9401 ± 0.0328 |
 | **Three-seed summary** | **0.9329 ± 0.0327** | **0.8928 ± 0.0386** | **0.9409 ± 0.0319** |
 
-To reproduce these results, place the checkpoints in `pretrained/` and extract the training dataset to `data/CTC/Fluo-N2DL-HeLa/`, preserving its image and GT/ST directories. Run the following commands from the repository root:
+To reproduce these results:
 
 ```bash
 DS=Fluo-N2DL-HeLa
@@ -150,8 +146,6 @@ python touchsplit.py evaluate -c touchsplit.yml -d "$DS" \
 
 ### Fluo-C2DL-MSC
 
-Evaluation uses all 48 frames of sequence 02, with GT annotations for 33 frames and ST annotations for the remaining 15 frames. All three decoders use the same seed-0 encoder and `hmax:0.4` watershed markers. Scores are computed using the evaluation implementation in `utils.py`.
-
 | Decoder seed | SEG | Touch SEG | Nontouch SEG |
 | --- | --- | --- | --- |
 | 0 | 0.7716 ± 0.1043 | 0.7015 ± 0.1769 | 0.7857 ± 0.1135 |
@@ -159,11 +153,7 @@ Evaluation uses all 48 frames of sequence 02, with GT annotations for 33 frames 
 | 2 | 0.7660 ± 0.1162 | 0.6885 ± 0.1765 | 0.7853 ± 0.1144 |
 | **Three-seed summary** | **0.7709 ± 0.1046** | **0.7024 ± 0.1633** | **0.7858 ± 0.1139** |
 
-Touch SEG includes 32 instances across 16 eligible images; Nontouch SEG includes 142 instances across 44 eligible images.
-
-Values are per-image means ± population standard deviations across images (`ddof=0`). For the three-seed summary, scores are first averaged across seeds for each image, then the mean and standard deviation are computed across images. Images without eligible objects in a subset are excluded from that subset's statistics.
-
-To reproduce these results, place the checkpoints in `pretrained/` and extract the training dataset to `data/CTC/Fluo-C2DL-MSC/`, preserving its image and GT/ST directories. Run the following commands from the repository root:
+To reproduce these results:
 
 ```bash
 DS=Fluo-C2DL-MSC
@@ -190,8 +180,6 @@ python touchsplit.py evaluate -c touchsplit.yml -d "$DS" \
 
 ### PhC-C2DH-U373
 
-Evaluation uses all 115 frames of sequence 02, with GT annotations for 19 frames and ST annotations for the remaining 96 frames. All three decoders use the same seed-0 encoder and `hmax:0.4` watershed markers. Scores are computed using the evaluation implementation in `utils.py`.
-
 | Decoder seed | SEG | Touch SEG | Nontouch SEG |
 | --- | --- | --- | --- |
 | 0 | 0.8876 ± 0.0713 | 0.5662 ± 0.1870 | 0.9387 ± 0.0319 |
@@ -199,7 +187,7 @@ Evaluation uses all 115 frames of sequence 02, with GT annotations for 19 frames
 | 2 | 0.8876 ± 0.0731 | 0.5668 ± 0.1877 | 0.9389 ± 0.0369 |
 | **Three-seed summary** | **0.8883 ± 0.0714** | **0.5693 ± 0.1870** | **0.9390 ± 0.0339** |
 
-To reproduce these results, place the checkpoints in `pretrained/` and extract the training dataset to `data/CTC/PhC-C2DH-U373/`, preserving its image and GT/ST directories. Run the following commands from the repository root:
+To reproduce these results:
 
 ```bash
 DS=PhC-C2DH-U373
